@@ -33,8 +33,9 @@ public class BlogController {
     }
 
     @PostMapping("/blog/add")
-    public String blogPostAdd(@RequestParam String title, @RequestParam String anons, @RequestParam String full_text, Model model){
-        Post post = new Post(title, anons, full_text);
+    public String blogPostAdd(@RequestParam String title_workout, @RequestParam String workout_day, @RequestParam String description_workout,
+                              @RequestParam int duration_of_training, Model model){
+        Post post = new Post(title_workout, workout_day, description_workout, duration_of_training);
         postRepository.save(post);
         return "redirect:/blog";
     }
@@ -64,11 +65,13 @@ public class BlogController {
     }
 
     @PostMapping("/blog/{id}/edit")
-    public String blogPostUpdate(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String anons, @RequestParam String full_text, Model model){
+    public String blogPostUpdate(@PathVariable(value = "id") long id, @RequestParam String title_workout, @RequestParam String workout_day, @RequestParam String description_workout,
+                                 @RequestParam int duration_of_training, Model model){
         Post post = postRepository.findById(id).orElseThrow();
-        post.setTitle(title);
-        post.setAnons(anons);
-        post.setFull_text(full_text);
+        post.setTitle_workout(title_workout);
+        post.setWorkout_day(workout_day);
+        post.setDescription_workout(description_workout);
+        post.setDuration_of_training(duration_of_training);
         postRepository.save(post);
         return "redirect:/blog";
     }
