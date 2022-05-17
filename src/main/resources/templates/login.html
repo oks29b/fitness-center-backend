@@ -11,17 +11,18 @@
 
 </head>
 <body>
+Login page
 <div th:if="${param.error}">
     Invalid username and password.
 </div>
 <div th:if="${param.logout}">
     You have been logged out.
 </div>
-<form action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="u"/> </label></div>
-    <div><label> Password: <input type="password" name="p"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
+<form action="/login" method="post">
+    <div><label> User Name : <input type="text" name="username"/> </label></div>
+    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><input type="submit" value="Войти"/></div>
 </form>
-<!--<a href="/registration">Add new user</a>-->
+<a href="/registration">Добавить нового пользователя</a>
 </body>
 </html>

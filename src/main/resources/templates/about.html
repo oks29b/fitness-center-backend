@@ -12,19 +12,14 @@
 <body>
 <header th:insert="blocks/header :: header"></header>
 
-
 <div class="jumbotron">
     <h1 class="display-4" th:text = "${title}"/>
-    <br>
-    <br>
     <p class="lead">И здесь также могла бы быть Ваша реклама!</p>
     <hr class="my-4">
     <p>Какое-либо описание...</p>
-    <br>
-    <br>
-    <br>
 </div>
+
 <div th:insert="blocks/footer :: footer"></div>
-<!--<p th:text="'Hello, ' + ${title} + '!'" />-->
+
 </body>
 </html>

@@ -18,45 +18,46 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-//    @Autowired
-//    private DataSource dataSourse;
+    @Autowired
+    private DataSource dataSourse;
 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
-                .anyRequest().authenticated()
+                    .antMatchers("/", "/registration", "/about").permitAll()
+                    .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                    .formLogin()
+                    .loginPage("/login")
+                    .permitAll()
                 .and()
-                .logout()
-                .permitAll();
+                    .logout()
+                    .permitAll();
     }
 
-    @Bean
+//    @Bean
+//    @Override
+//    public UserDetailsService userDetailsService() {
+//        UserDetails user =
+//                User.withDefaultPasswordEncoder()
+//                        .username("u")
+//                        .password("p")
+//                        .roles("USER")
+//                        .build();
+//
+//        return new InMemoryUserDetailsManager(user);
+//    }
+//}
     @Override
-    public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withDefaultPasswordEncoder()
-                        .username("u")
-                        .password("p")
-                        .roles("USER")
-                        .build();
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+         auth.jdbcAuthentication()
+                 .dataSource(dataSourse)
+                 .passwordEncoder(NoOpPasswordEncoder.getInstance())
+                 .usersByUsernameQuery("select username, password, active from usr where username=?")
+                 .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join user_role ur on u.id = ur.user_id where u.username=?");
 
-        return new InMemoryUserDetailsManager(user);
     }
 }
-////    @Override
-////    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-////         auth.jdbcAuthentication()
-////                 .dataSource(dataSourse)
-////                 .passwordEncoder(NoOpPasswordEncoder.getInstance())
-////                 .usersByUsernameQuery("select username, password, active from usr where username=?")
-////                 .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join user_role ur on u.id = ur.user_id where u.username=?");
-////
-////    }
-//}

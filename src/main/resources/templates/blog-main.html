@@ -11,6 +11,14 @@
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
+<br>
+<br>
+<br>
+
+<form class="form-inline my-2 my-lg-0">
+    <a href="/blog/add" class="btn btn-outline-dark" type="submit">Add workout</a>
+</form>
+
 <div class="container mt-5">
     <h1>Тренировки</h1>
     <div th:each="el :  ${posts}" class = "alert alert-info mt-2">
@@ -21,6 +29,12 @@
     </div>
 </div>
 
+
+<div>
+    <form action="/logout" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
 
 <div th:insert="blocks/footer :: footer"></div>
 
