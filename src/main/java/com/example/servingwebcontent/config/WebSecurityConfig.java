@@ -32,25 +32,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .formLogin()
                     .loginPage("/login")
+                    .defaultSuccessUrl("/blog")
                     .permitAll()
                 .and()
                     .logout()
+                    .logoutSuccessUrl("/")
                     .permitAll();
     }
 
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user =
-//                User.withDefaultPasswordEncoder()
-//                        .username("u")
-//                        .password("p")
-//                        .roles("USER")
-//                        .build();
-//
-//        return new InMemoryUserDetailsManager(user);
-//    }
-//}
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
          auth.jdbcAuthentication()
@@ -58,6 +47,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                  .passwordEncoder(NoOpPasswordEncoder.getInstance())
                  .usersByUsernameQuery("select username, password, active from usr where username=?")
                  .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join user_role ur on u.id = ur.user_id where u.username=?");
-
     }
 }
