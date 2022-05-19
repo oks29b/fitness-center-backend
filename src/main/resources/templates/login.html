@@ -8,27 +8,40 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+/* Background */
+body{
+background: url('https://static2.issaplus.com/wa-data/public/photos/56/42/4256/4256.970.jpg') no-repeat;
+background-size: cover;
+}
+</style>
 
 </head>
 <body>
 <div class="container">
     <div class="row justify-content-center align-items-center">
-        <div th:if="${param.error}">
-            Invalid username and password.
-        </div>
-        <div th:if="${param.logout}">
-            You have been logged out.
-        </div>
+
         <form action="/login" method="post" form-horizontal>
+            <br>
+
             <span class="heading">АВТОРИЗАЦИЯ</span>
+            <br>
+            <div th:if="${param.error}">
+                Invalid username and password.
+            </div>
+            <div th:if="${param.logout}">
+                You have been logged out.
+            </div>
                 <div class="form-group">
-                    <div><label> User Name : <input type="text" class="form-control" name="username"/> </label></div>
-                    <div><label> Password: <input type="password" class="form-control" name="password"/> </label></div>
+                    <div><label> Имя пользователя : <input type="text" class="form-control" name="username"/> </label></div>
+                    <div><label> Пароль: <input type="password" class="form-control" name="password"/> </label></div>
                     <div><input type="submit" value="Войти"/></div>
                     <a href="/registration">Добавить нового пользователя</a>
                 </div>
         </form>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
