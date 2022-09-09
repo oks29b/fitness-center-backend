@@ -1,7 +1,7 @@
 package com.example.servingwebcontent.controller;
 
-import com.example.servingwebcontent.repo.Post;
-import com.example.servingwebcontent.repo.PostRepository;
+import com.example.servingwebcontent.model.entity.Post;
+import com.example.servingwebcontent.model.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +16,12 @@ import java.util.Optional;
 
 @Controller
 public class BlogController {
+    private PostRepository postRepository;
 
     @Autowired
-    private PostRepository postRepository;
+    public BlogController(PostRepository postRepository){
+        this.postRepository = postRepository;
+    }
 
     @GetMapping("/blog")
     public String blogMain(Model model){
