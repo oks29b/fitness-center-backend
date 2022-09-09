@@ -1,4 +1,4 @@
-package com.example.servingwebcontent.repo;
+package com.example.servingwebcontent.model.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

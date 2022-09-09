@@ -1,8 +1,8 @@
 package com.example.servingwebcontent.controller;
 
-import com.example.servingwebcontent.repo.Role;
-import com.example.servingwebcontent.repo.UserRepo;
-import com.example.servingwebcontent.repo.Users;
+import com.example.servingwebcontent.model.entity.Role;
+import com.example.servingwebcontent.model.repository.UserRepo;
+import com.example.servingwebcontent.model.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +13,12 @@ import java.util.Collections;
 
 @Controller
 public class RegistrationController {
-
-    @Autowired
     private UserRepo userRepo;
+
+    public RegistrationController(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
+
 
     @GetMapping("/registration")
     public String registration(){
