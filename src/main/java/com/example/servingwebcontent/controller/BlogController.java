@@ -38,10 +38,9 @@ public class BlogController {
     }
 
     @PostMapping("/blog/add")
-    public String blogPostAdd(@RequestParam String title_workout, @RequestParam String workout_day, @RequestParam String description_workout,
+    public String blogPostAddInfo(@RequestParam String title_workout, @RequestParam String workout_day, @RequestParam String description_workout,
                               @RequestParam int duration_of_training, Model model){
-        Post post = new Post(title_workout, workout_day, description_workout, duration_of_training);
-        postRepository.save(post);
+        blogService.blogPostAdd(postRepository, title_workout, workout_day, description_workout, duration_of_training, model);
         return "redirect:/blog";
     }
 
@@ -50,10 +49,7 @@ public class BlogController {
         if(!postRepository.existsById(id)){
             return "redirect:/blog";
         }
-        Optional<Post> post = postRepository.findById(id);
-        List<Post> res = new ArrayList<>();
-        post.ifPresent(res::add);
-        model.addAttribute("post",res);
+        blogService.blogDetails(postRepository, id, model);
         return "blog-details";
     }
 
@@ -70,14 +66,9 @@ public class BlogController {
     }
 
     @PostMapping("/blog/{id}/edit")
-    public String blogPostUpdate(@PathVariable(value = "id") long id, @RequestParam String title_workout, @RequestParam String workout_day, @RequestParam String description_workout,
+    public String blogPostUpdateInfo(@PathVariable(value = "id") long id, @RequestParam String title_workout, @RequestParam String workout_day, @RequestParam String description_workout,
                                  @RequestParam int duration_of_training, Model model){
-        Post post = postRepository.findById(id).orElseThrow();
-        post.setTitle_workout(title_workout);
-        post.setWorkout_day(workout_day);
-        post.setDescription_workout(description_workout);
-        post.setDuration_of_training(duration_of_training);
-        postRepository.save(post);
+        blogService.blogPostUpdate(postRepository, id, title_workout, workout_day, description_workout, duration_of_training, model);
         return "redirect:/blog";
     }
 
