@@ -2,6 +2,7 @@ package com.example.servingwebcontent.controller;
 
 import com.example.servingwebcontent.model.entity.Post;
 import com.example.servingwebcontent.model.repository.PostRepository;
+import com.example.servingwebcontent.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import java.util.Optional;
 @Controller
 public class BlogController {
     private PostRepository postRepository;
+    private BlogService blogService = new BlogService();
 
     @Autowired
     public BlogController(PostRepository postRepository){
@@ -79,10 +81,10 @@ public class BlogController {
         return "redirect:/blog";
     }
 
+
     @PostMapping("/blog/{id}/remove")
-    public String blogPostRemove(@PathVariable(value = "id") long id, Model model){
-        Post post = postRepository.findById(id).orElseThrow();
-        postRepository.delete(post);
+    public String blogPostRemoveFromList(@PathVariable(value = "id") long id, Model model) {
+        blogService.blogPostRemove(postRepository, id, model);
         return "redirect:/blog";
     }
 }
