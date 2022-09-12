@@ -12,14 +12,14 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String title_workout, workout_day, description_workout;
-    private int duration_of_training;
+    private String titleWorkout, workoutDay, descriptionWorkout;
+    private int durationOfTraining;
 
-    public Post(String title_workout, String workout_day, String description_workout, int duration_of_training) {
-        this.title_workout = title_workout;
-        this.workout_day = workout_day;
-        this.description_workout = description_workout;
-        this.duration_of_training = duration_of_training;
+    public Post(String titleWorkout, String workoutDay, String descriptionWorkout, int durationOfTraining) {
+        this.titleWorkout = titleWorkout;
+        this.workoutDay = workoutDay;
+        this.descriptionWorkout = descriptionWorkout;
+        this.durationOfTraining = durationOfTraining;
     }
 
     public Post() {
@@ -29,40 +29,40 @@ public class Post {
         return id;
     }
 
-    public String getTitle_workout() {
-        return title_workout;
+    public String getTitleWorkout() {
+        return titleWorkout;
     }
 
-    public String getWorkout_day() {
-        return workout_day;
+    public String getWorkoutDay() {
+        return workoutDay;
     }
 
-    public String getDescription_workout() {
-        return description_workout;
+    public String getDescriptionWorkout() {
+        return descriptionWorkout;
     }
 
-    public int getDuration_of_training() {
-        return duration_of_training;
+    public int getDurationOfTraining() {
+        return durationOfTraining;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setTitle_workout(String title_workout) {
-        this.title_workout = title_workout;
+    public void setTitleWorkout(String titleWorkout) {
+        this.titleWorkout = titleWorkout;
     }
 
-    public void setWorkout_day(String workout_day) {
-        this.workout_day = workout_day;
+    public void setWorkoutDay(String workoutDay) {
+        this.workoutDay = workoutDay;
     }
 
-    public void setDescription_workout(String description_workout) {
-        this.description_workout = description_workout;
+    public void setDescriptionWorkout(String descriptionWorkout) {
+        this.descriptionWorkout = descriptionWorkout;
     }
 
-    public void setDuration_of_training(int duration_of_training) {
-        this.duration_of_training = duration_of_training;
+    public void setDurationOfTraining(int durationOfTraining) {
+        this.durationOfTraining = durationOfTraining;
     }
 
 }

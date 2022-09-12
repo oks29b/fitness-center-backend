@@ -17,13 +17,13 @@
     <h1>Редактирование тренировки</h1>
     <div th:each="el : ${post}">
         <form method="post">
-            <input type="text" th:value="${el.title_workout}" name="title_workout"
+            <input type="text" th:value="${el.titleWorkout}" name="titleWorkout"
                    placeholder="Введите название тренировки" class="form-control"><br>
-            <input type="date" th:value="${el.workout_day}" name="workout_day" placeholder="Введите дату тренировки"
+            <input type="date" th:value="${el.workoutDay}" name="workoutDay" placeholder="Введите дату тренировки"
                    class="form-control"><br>
-            <textarea name="description_workout" placeholder="Введите описание тренировки" class="form-control"
-                      th:text="${el.description_workout}"/><br>
-            <input type="text" th:value="${el.duration_of_training}" name="duration_of_training"
+            <textarea name="descriptionWorkout" placeholder="Введите описание тренировки" class="form-control"
+                      th:text="${el.descriptionWorkout}"/><br>
+            <input type="text" th:value="${el.durationOfTraining}" name="durationOfTraining"
                    placeholder="Введите длительность тренировки" class="form-control"><br>
             <button type="submit" class="btn btn-success">Обновить</button>
         </form>

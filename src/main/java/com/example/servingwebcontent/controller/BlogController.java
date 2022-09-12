@@ -2,7 +2,7 @@ package com.example.servingwebcontent.controller;
 
 import com.example.servingwebcontent.model.entity.Post;
 import com.example.servingwebcontent.model.repository.PostRepository;
-import com.example.servingwebcontent.service.BlogService;
+import com.example.servingwebcontent.service.impl.BlogServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ import java.util.Optional;
 @Controller
 public class BlogController {
     private PostRepository postRepository;
-    private BlogService blogService = new BlogService();
+    private BlogServiceImpl blogService = new BlogServiceImpl();
 
     @Autowired
     public BlogController(PostRepository postRepository) {
@@ -38,9 +38,9 @@ public class BlogController {
     }
 
     @PostMapping("/blog/add")
-    public String blogPostAddInfo(@RequestParam String title_workout, @RequestParam String workout_day, @RequestParam String description_workout,
-                                  @RequestParam int duration_of_training, Model model) {
-        blogService.blogPostAdd(postRepository, title_workout, workout_day, description_workout, duration_of_training, model);
+    public String blogPostAddInfo(@RequestParam String titleWorkout, @RequestParam String workoutDay, @RequestParam String descriptionWorkout,
+                                  @RequestParam int durationOfTraining, Model model) {
+        blogService.blogPostAdd(postRepository, titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, model);
         return "redirect:/blog";
     }
 
@@ -66,9 +66,9 @@ public class BlogController {
     }
 
     @PostMapping("/blog/{id}/edit")
-    public String blogPostUpdateInfo(@PathVariable(value = "id") long id, @RequestParam String title_workout, @RequestParam String workout_day, @RequestParam String description_workout,
-                                     @RequestParam int duration_of_training, Model model) {
-        blogService.blogPostUpdate(postRepository, id, title_workout, workout_day, description_workout, duration_of_training, model);
+    public String blogPostUpdateInfo(@PathVariable(value = "id") long id, @RequestParam String titleWorkout, @RequestParam String workoutDay,
+                                     @RequestParam String descriptionWorkout, @RequestParam int durationOfTraining, Model model) {
+        blogService.blogPostUpdate(postRepository, id, titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, model);
         return "redirect:/blog";
     }
 
