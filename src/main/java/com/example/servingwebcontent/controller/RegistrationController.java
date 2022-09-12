@@ -21,14 +21,14 @@ public class RegistrationController {
 
 
     @GetMapping("/registration")
-    public String registration(){
+    public String registration() {
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String addUser(Users user, Model model){
+    public String addUser(Users user, Model model) {
         Users userFromDb = userRepo.findByUsername(user.getUsername());
-        if(userFromDb != userRepo.findByUsername(user.getUsername())){
+        if (userFromDb != userRepo.findByUsername(user.getUsername())) {
             model.addAttribute("post", "User exists");
             return "registration";
         }

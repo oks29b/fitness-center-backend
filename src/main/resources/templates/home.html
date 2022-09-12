@@ -1,30 +1,34 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text = "${title}"/>
-<!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
+    <title th:text="${title}"/>
+    <!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
 
 <div class="jumbotron">
-    <h1 class="display-4" th:text = "${title}"/>
+    <h1 class="display-4" th:text="${title}"/>
     <br>
     <br>
     <p class="lead">Здесь могла бы быть Ваша реклама=)</p>
     <hr class="my-4">
-    <p>Спорт (англ. sport, сокращение от первоначального старофранц. desport — «игра», «развлечение») — организованная по определённым правилам деятельность людей (спортсменов), состоящая в сопоставлении их физических и/или интеллектуальных способностей.</p>
+    <p>Спорт (англ. sport, сокращение от первоначального старофранц. desport — «игра», «развлечение») — организованная
+        по определённым правилам деятельность людей (спортсменов), состоящая в сопоставлении их физических и/или
+        интеллектуальных способностей.</p>
     <br>
     <br>
     <br>
     <p class="lead">
-        <a class="btn btn-primary btn-lg" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%BE%D1%80%D1%82" role="button">Узнать больше &raquo;</a>
+        <a class="btn btn-primary btn-lg" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%BE%D1%80%D1%82"
+           role="button">Узнать больше &raquo;</a>
     </p>
 </div>
 <div class="container-fluid">
@@ -32,23 +36,31 @@
         <div class="col-md-4">
             <h2>Скорость</h2>
             <p>Скорость - это способность человека совершать действия в минимальный для данных условий отрезок времени.
-                Скорость является решающим фактором во многих видах спорта. Обычно выделяют три разновидности про­явления скоростных качеств, приведенных ниже:</p>
-            <p><a class="btn btn-secondary" href="https://studme.org/99794/meditsina/razvitie_bystroty" role="button">Узнать больше &raquo;</a></p>
+                Скорость является решающим фактором во многих видах спорта. Обычно выделяют три разновидности
+                про­явления скоростных качеств, приведенных ниже:</p>
+            <p><a class="btn btn-secondary" href="https://studme.org/99794/meditsina/razvitie_bystroty" role="button">Узнать
+                больше &raquo;</a></p>
         </div>
 
 
         <div class="col-md-4">
             <h2>Сила</h2>
-            <p>Силу человека можно определить как его способность преодолевать внешнее сопротивление посредством мышечных усилий».
-                Сила — одно из важнейших физических качеств в абсолютном большинстве видов спорта. Поэтому ее развитию спортсмены уделяют исключительно много внимания.</p>
-            <p><a class="btn btn-secondary" href="https://ebooks.grsu.by/flerko/3-razvitie-sily.htm" role="button">Узнать больше &raquo;</a></p>
+            <p>Силу человека можно определить как его способность преодолевать внешнее сопротивление посредством
+                мышечных усилий».
+                Сила — одно из важнейших физических качеств в абсолютном большинстве видов спорта. Поэтому ее развитию
+                спортсмены уделяют исключительно много внимания.</p>
+            <p><a class="btn btn-secondary" href="https://ebooks.grsu.by/flerko/3-razvitie-sily.htm" role="button">Узнать
+                больше &raquo;</a></p>
         </div>
 
 
         <div class="col-md-4">
             <h2>Выносливость</h2>
-            <p>Выносливость - важнейшее физическое качество, выражающееся в способности противостоять физическому утомлению в процессе мышечной деятельности и проявляющееся в профессиональной, спортивной практике (в той или иной степени в каждом виде спорта) и повседневной жизни.</p>
-            <p><a class="btn btn-secondary" href="https://style.rbc.ru/health/60213ee69a79470c2b0b1964" role="button">Узнать больше &raquo;</a></p>
+            <p>Выносливость - важнейшее физическое качество, выражающееся в способности противостоять физическому
+                утомлению в процессе мышечной деятельности и проявляющееся в профессиональной, спортивной практике (в
+                той или иной степени в каждом виде спорта) и повседневной жизни.</p>
+            <p><a class="btn btn-secondary" href="https://style.rbc.ru/health/60213ee69a79470c2b0b1964" role="button">Узнать
+                больше &raquo;</a></p>
         </div>
 
     </div>
@@ -62,7 +74,11 @@
 <!--    <link rel = "stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">-->
 
 <!-- JS, Jquery -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 </html>
