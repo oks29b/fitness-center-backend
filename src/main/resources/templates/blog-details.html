@@ -15,9 +15,9 @@
 >
 <div class="container mt-5">
     <div th:each="el :  ${post}" class="alert alert-info mt-2">
-        <h1 th:text="${el.title_workout}"/>
-        <p th:text="${el.description_workout}"/>
-        <p><b>Длительность тренировки:</b> <span th:text="${el.duration_of_training}"/></p>
+        <h1 th:text="${el.titleWorkout}"/>
+        <p th:text="${el.descriptionWorkout}"/>
+        <p><b>Длительность тренировки:</b> <span th:text="${el.durationOfTraining}"/></p>
         <a th:href=" '/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a><br><br>
         <form th:action=" '/blog/' + ${el.id} + '/remove'" method="post">
             <button class="btn btn-warning" type="submit">Удалить</button>
