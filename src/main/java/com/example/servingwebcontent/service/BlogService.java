@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class BlogService implements BlogPostInterface{
+public class BlogService implements BlogPostInterface {
 
     public BlogService() {
     }
 
     @Override
-    public void blogPostAdd(PostRepository postRepository, String title_workout, String workout_day, String description_workout, int duration_of_training, Model model){
+    public void blogPostAdd(PostRepository postRepository, String title_workout, String workout_day, String description_workout, int duration_of_training, Model model) {
         Post post = new Post(title_workout, workout_day, description_workout, duration_of_training);
         postRepository.save(post);
     }
@@ -25,7 +25,7 @@ public class BlogService implements BlogPostInterface{
         Optional<Post> post = postRepository.findById(id);
         List<Post> res = new ArrayList<>();
         post.ifPresent(res::add);
-        model.addAttribute("post",res);
+        model.addAttribute("post", res);
     }
 
     @Override
