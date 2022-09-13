@@ -22,7 +22,7 @@
 
 <div class="container mt-5">
     <h1>Тренировки</h1>
-    <div th:each="el :  ${posts}" class="alert alert-info mt-2">
+    <div th:each="el : ${posts}" class="alert alert-info mt-2">
         <h3 th:text="${el.titleWorkout}"/>
         <p th:text="${el.workoutDay}"/>
         <p th:text="${durationOfTraining}"/>

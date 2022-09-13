@@ -1,7 +1,6 @@
 package com.example.servingwebcontent.controller;
 
 import com.example.servingwebcontent.model.entity.Post;
-import com.example.servingwebcontent.model.repository.PostRepository;
 import com.example.servingwebcontent.service.impl.BlogServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,18 +16,20 @@ import java.util.Optional;
 
 @Controller
 public class BlogController {
-    private PostRepository postRepository;
+
     private BlogServiceImpl blogService = new BlogServiceImpl();
 
+    public BlogController(){
+    }
+
     @Autowired
-    public BlogController(PostRepository postRepository) {
-        this.postRepository = postRepository;
+    public BlogController(BlogServiceImpl blogService) {
+        this.blogService = blogService;
     }
 
     @GetMapping("/blog")
     public String blogMain(Model model) {
-        Iterable<Post> posts = postRepository.findAll();
-        model.addAttribute("posts", posts);
+        blogService.blogGetMain(model);
         return "blog-main";
     }
 
@@ -40,25 +41,25 @@ public class BlogController {
     @PostMapping("/blog/add")
     public String blogPostAddInfo(@RequestParam String titleWorkout, @RequestParam String workoutDay, @RequestParam String descriptionWorkout,
                                   @RequestParam int durationOfTraining, Model model) {
-        blogService.blogPostAdd(postRepository, titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, model);
+        blogService.blogPostAdd(titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, model);
         return "redirect:/blog";
     }
 
     @GetMapping("/blog/{id}")
     public String blogDetails(@PathVariable(value = "id") long id, Model model) {
-        if (!postRepository.existsById(id)) {
+        if (!blogService.getPostRepository().existsById(id)) {
             return "redirect:/blog";
         }
-        blogService.blogDetails(postRepository, id, model);
+        blogService.blogPostDetails(id, model);
         return "blog-details";
     }
 
     @GetMapping("/blog/{id}/edit")
     public String blogEdit(@PathVariable(value = "id") long id, Model model) {
-        if (!postRepository.existsById(id)) {
+        if (!blogService.getPostRepository().existsById(id)) {
             return "redirect:/blog";
         }
-        Optional<Post> post = postRepository.findById(id);
+        Optional<Post> post = blogService.getPostRepository().findById(id);
         List<Post> res = new ArrayList<>();
         post.ifPresent(res::add);
         model.addAttribute("post", res);
@@ -68,13 +69,13 @@ public class BlogController {
     @PostMapping("/blog/{id}/edit")
     public String blogPostUpdateInfo(@PathVariable(value = "id") long id, @RequestParam String titleWorkout, @RequestParam String workoutDay,
                                      @RequestParam String descriptionWorkout, @RequestParam int durationOfTraining, Model model) {
-        blogService.blogPostUpdate(postRepository, id, titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, model);
+        blogService.blogPostUpdate(id, titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, model);
         return "redirect:/blog";
     }
 
     @PostMapping("/blog/{id}/remove")
     public String blogPostRemoveFromList(@PathVariable(value = "id") long id, Model model) {
-        blogService.blogPostRemove(postRepository, id, model);
+        blogService.blogPostRemove(id, model);
         return "redirect:/blog";
     }
 }
