@@ -49,7 +49,7 @@ public class BlogController {
     @GetMapping("/blog/{id}")
     public String blogDetails(@PathVariable(value = "id") long id, Model model) {
         if (!blogService.getPostRepository().existsById(id)) {
-            return "redirect:/blog";
+            return REDIRECT_BLOG;
         }
         blogService.blogPostDetails(id, model);
         return "blog-details";
@@ -58,12 +58,9 @@ public class BlogController {
     @GetMapping("/blog/{id}/edit")
     public String blogEdit(@PathVariable(value = "id") long id, Model model) {
         if (!blogService.getPostRepository().existsById(id)) {
-            return "redirect:/blog";
+            return REDIRECT_BLOG;
         }
-        Optional<Post> post = blogService.getPostRepository().findById(id);
-        List<Post> res = new ArrayList<>();
-        post.ifPresent(res::add);
-        model.addAttribute("post", res);
+        blogService.blogEditInfo(id, model);
         return "blog-edit";
     }
 

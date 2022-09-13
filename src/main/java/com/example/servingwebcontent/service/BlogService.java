@@ -9,6 +9,8 @@ public interface BlogService {
 
     public void blogPostDetails(long id, Model model);
 
+    public void blogEditInfo(long id, Model model);
+
     public void blogPostUpdate(long id, String titleWorkout, String workoutDay,
                                String descriptionWorkout, int durationOfTraining, Model model);
 

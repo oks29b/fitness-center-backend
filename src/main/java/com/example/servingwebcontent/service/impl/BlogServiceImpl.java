@@ -29,7 +29,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public void blogGetMain(Model model) {
-        Iterable<Post> posts = postRepository.findAll();
+        List<Post> posts = postRepository.findAll();
         model.addAttribute("posts", posts);
     }
 
@@ -41,6 +41,14 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public void blogPostDetails(long id, Model model) {
+        Optional<Post> post = postRepository.findById(id);
+        List<Post> res = new ArrayList<>();
+        post.ifPresent(res::add);
+        model.addAttribute("post", res);
+    }
+
+    @Override
+    public void blogEditInfo(long id, Model model) {
         Optional<Post> post = postRepository.findById(id);
         List<Post> res = new ArrayList<>();
         post.ifPresent(res::add);
