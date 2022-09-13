@@ -16,6 +16,7 @@ import java.util.Optional;
 
 @Controller
 public class BlogController {
+    private static final String REDIRECT_BLOG = "redirect:/blog";
 
     private BlogServiceImpl blogService = new BlogServiceImpl();
 
@@ -42,7 +43,7 @@ public class BlogController {
     public String blogPostAddInfo(@RequestParam String titleWorkout, @RequestParam String workoutDay, @RequestParam String descriptionWorkout,
                                   @RequestParam int durationOfTraining, Model model) {
         blogService.blogPostAdd(titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, model);
-        return "redirect:/blog";
+        return REDIRECT_BLOG;
     }
 
     @GetMapping("/blog/{id}")
@@ -70,12 +71,12 @@ public class BlogController {
     public String blogPostUpdateInfo(@PathVariable(value = "id") long id, @RequestParam String titleWorkout, @RequestParam String workoutDay,
                                      @RequestParam String descriptionWorkout, @RequestParam int durationOfTraining, Model model) {
         blogService.blogPostUpdate(id, titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, model);
-        return "redirect:/blog";
+        return REDIRECT_BLOG;
     }
 
     @PostMapping("/blog/{id}/remove")
     public String blogPostRemoveFromList(@PathVariable(value = "id") long id, Model model) {
         blogService.blogPostRemove(id, model);
-        return "redirect:/blog";
+        return REDIRECT_BLOG;
     }
 }
