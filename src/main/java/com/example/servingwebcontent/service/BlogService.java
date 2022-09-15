@@ -1,18 +1,23 @@
 package com.example.servingwebcontent.service;
 
+import com.example.servingwebcontent.model.entity.Post;
+import com.example.servingwebcontent.model.repository.PostRepository;
 import org.springframework.ui.Model;
 
+import java.util.List;
+
 public interface BlogService {
-    public void blogGetMain(Model model);
-    public void blogPostAdd(String titleWorkout, String workoutDay,
-                            String descriptionWorkout, int durationOfTraining, Model model);
+    public List<Post> blogGetMain();
 
-    public void blogPostDetails(long id, Model model);
+    public Post blogPostAdd(String titleWorkout, String workoutDay,
+                                      String descriptionWorkout, int durationOfTraining);
 
-    public void blogEditInfo(long id, Model model);
+    public List<Post> blogPostDetails(long id);
 
-    public void blogPostUpdate(long id, String titleWorkout, String workoutDay,
-                               String descriptionWorkout, int durationOfTraining, Model model);
+    public List<Post> blogEditInfo(long id);
 
-    public void blogPostRemove(long id, Model model);
+    public Post blogPostUpdate(long id, String titleWorkout, String workoutDay,
+                               String descriptionWorkout, int durationOfTraining);
+
+    public Post blogPostRemove(long id);
 }

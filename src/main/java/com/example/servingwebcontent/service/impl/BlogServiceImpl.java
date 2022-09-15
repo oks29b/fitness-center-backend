@@ -28,46 +28,47 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public void blogGetMain(Model model) {
+    public List<Post> blogGetMain() {
         List<Post> posts = postRepository.findAll();
-        model.addAttribute("posts", posts);
+        return posts;
     }
 
     @Override
-    public void blogPostAdd(String titleWorkout, String workoutDay, String descriptionWorkout, int durationOfTraining, Model model) {
+    public Post blogPostAdd(String titleWorkout, String workoutDay, String descriptionWorkout, int durationOfTraining) {
         Post post = new Post(titleWorkout, workoutDay, descriptionWorkout, durationOfTraining);
-        postRepository.save(post);
+        return postRepository.save(post);
     }
 
     @Override
-    public void blogPostDetails(long id, Model model) {
+    public List<Post> blogPostDetails(long id) {
         Optional<Post> post = postRepository.findById(id);
         List<Post> res = new ArrayList<>();
         post.ifPresent(res::add);
-        model.addAttribute("post", res);
+        return res;
     }
 
     @Override
-    public void blogEditInfo(long id, Model model) {
+    public List<Post> blogEditInfo(long id) {
         Optional<Post> post = postRepository.findById(id);
         List<Post> res = new ArrayList<>();
         post.ifPresent(res::add);
-        model.addAttribute("post", res);
+        return res;
     }
 
     @Override
-    public void blogPostUpdate(long id, String titleWorkout, String workoutDay, String descriptionWorkout, int durationOfTraining, Model model) {
+    public Post blogPostUpdate(long id, String titleWorkout, String workoutDay, String descriptionWorkout, int durationOfTraining) {
         Post post = postRepository.findById(id).orElseThrow();
         post.setTitleWorkout(titleWorkout);
         post.setWorkoutDay(workoutDay);
         post.setDescriptionWorkout(descriptionWorkout);
         post.setDurationOfTraining(durationOfTraining);
-        postRepository.save(post);
+        return postRepository.save(post);
     }
 
     @Override
-    public void blogPostRemove(long id, Model model) {
+    public Post blogPostRemove(long id) {
         Post post = postRepository.findById(id).orElseThrow();
         postRepository.delete(post);
+        return post;
     }
 }

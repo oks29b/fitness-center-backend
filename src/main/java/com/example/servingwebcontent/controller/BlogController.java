@@ -30,7 +30,7 @@ public class BlogController {
 
     @GetMapping("/blog")
     public String blogMain(Model model) {
-        blogService.blogGetMain(model);
+        model.addAttribute("posts", blogService.blogGetMain());
         return "blog-main";
     }
 
@@ -42,7 +42,7 @@ public class BlogController {
     @PostMapping("/blog/add")
     public String blogPostAddInfo(@RequestParam String titleWorkout, @RequestParam String workoutDay, @RequestParam String descriptionWorkout,
                                   @RequestParam int durationOfTraining, Model model) {
-        blogService.blogPostAdd(titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, model);
+        blogService.blogPostAdd(titleWorkout, workoutDay, descriptionWorkout, durationOfTraining);
         return REDIRECT_BLOG;
     }
 
@@ -51,7 +51,7 @@ public class BlogController {
         if (!blogService.getPostRepository().existsById(id)) {
             return REDIRECT_BLOG;
         }
-        blogService.blogPostDetails(id, model);
+        model.addAttribute("post", blogService.blogPostDetails(id));
         return "blog-details";
     }
 
@@ -60,20 +60,20 @@ public class BlogController {
         if (!blogService.getPostRepository().existsById(id)) {
             return REDIRECT_BLOG;
         }
-        blogService.blogEditInfo(id, model);
+        model.addAttribute("post", blogService.blogEditInfo(id));
         return "blog-edit";
     }
 
     @PostMapping("/blog/{id}/edit")
     public String blogPostUpdateInfo(@PathVariable(value = "id") long id, @RequestParam String titleWorkout, @RequestParam String workoutDay,
                                      @RequestParam String descriptionWorkout, @RequestParam int durationOfTraining, Model model) {
-        blogService.blogPostUpdate(id, titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, model);
+        blogService.blogPostUpdate(id, titleWorkout, workoutDay, descriptionWorkout, durationOfTraining);
         return REDIRECT_BLOG;
     }
 
     @PostMapping("/blog/{id}/remove")
     public String blogPostRemoveFromList(@PathVariable(value = "id") long id, Model model) {
-        blogService.blogPostRemove(id, model);
+        blogService.blogPostRemove(id);
         return REDIRECT_BLOG;
     }
 }
