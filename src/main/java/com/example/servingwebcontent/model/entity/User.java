@@ -11,7 +11,7 @@ import java.util.Set;
 @Table(name = "usr")
 @Getter
 @Setter
-public class Users {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,6 +22,10 @@ public class Users {
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "userRole", joinColumns = @JoinColumn(name = "userId"))
     @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
+    private Set<Role> role;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
 
 }
