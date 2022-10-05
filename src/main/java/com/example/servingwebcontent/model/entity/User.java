@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "usr")
 @Getter
 @Setter
 public class User {
@@ -17,7 +16,6 @@ public class User {
     private Long id;
     private String username;
     private String password;
-    private boolean active;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "userRole", joinColumns = @JoinColumn(name = "userId"))
