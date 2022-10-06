@@ -1,21 +1,15 @@
 CREATE TABLE user(
-id int NOT NULL auto_increment primary key,
+id bigint NOT NULL auto_increment primary key,
 username varchar(255) not null Unique,
 password varchar(255) not null,
 roles varchar(20) default ('USER'),
 status varchar(20) default ('ACTIVE')
 );
 
-CREATE TABLE role(
-id int PRIMARY KEY AUTO_INCREMENT,
-nameRole varchar(255) not null
-);
-
-CREATE TABLE userRole(
-userId int,
-roleId int,
-foreign key (roleId) references role(id),
-foreign key (userId) references user(id)
+CREATE TABLE user_role(
+user_id bigint,
+role varchar(40),
+foreign key (user_id) references user(id)
 );
 
 
@@ -26,13 +20,4 @@ INSERT into user (id, username, password, roles, status)
 values (2, 'user', '$2y$12$4XHy4yJHDoaYAAqRTm9lbuk8PBauh4ZoHKakZslXysB7nxsz4hMme' , 'USER', 'BANNED') ;
 
 
-INSERT into role(nameRole) values ('ADMIN');
-INSERT into role(nameRole) values ('USER');
-
-CREATE TABLE status(
-id int PRIMARY KEY AUTO_INCREMENT,
-nameStatus varchar(255) not null
-);
-
-INSERT into status(nameStatus) values ('ACTIVE');
-INSERT into status(nameStatus) values ('BANNED');
+INSERT into user_role (user_id, role) values (1,'ADMIN');
