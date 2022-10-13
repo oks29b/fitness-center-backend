@@ -7,7 +7,7 @@ import com.example.servingwebcontent.model.entity.User;
 import java.util.List;
 
 public interface BlogService {
-    public List<Post> blogGetMain();
+    public List<Post> blogGetMain(Long userId);
 
     public Post blogPostAdd(String titleWorkout, String workoutDay,
                                       String descriptionWorkout, int durationOfTraining, User user);

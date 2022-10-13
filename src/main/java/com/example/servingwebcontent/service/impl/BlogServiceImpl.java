@@ -5,6 +5,7 @@ import com.example.servingwebcontent.model.entity.User;
 import com.example.servingwebcontent.model.repository.PostRepository;
 import com.example.servingwebcontent.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,8 +29,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Post> blogGetMain() {
-        List<Post> posts = postRepository.findAll();
+    public List<Post> blogGetMain(Long userId) {
+        List<Post> posts = postRepository.findAllByUserId(userId);
         return posts;
     }
 
