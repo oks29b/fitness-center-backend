@@ -28,8 +28,9 @@ public class BlogController {
     }
 
     @GetMapping("/blog")
-    public String blogMain(Model model) {
-        model.addAttribute("posts", blogService.blogGetMain());
+    public String blogMain(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+        User user = userRepository.findByUsername(userDetails.getUsername());
+        model.addAttribute("posts", blogService.blogGetMain(user.getId()));
         return "blog-main";
     }
 
