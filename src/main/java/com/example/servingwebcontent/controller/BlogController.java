@@ -1,8 +1,12 @@
 package com.example.servingwebcontent.controller;
 
-import com.example.servingwebcontent.model.entity.Post;
+import com.example.servingwebcontent.model.entity.User;
+import com.example.servingwebcontent.model.repository.UserRepository;
 import com.example.servingwebcontent.service.impl.BlogServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class BlogController {
     private static final String REDIRECT_BLOG = "redirect:/blog";
 
-    private BlogServiceImpl blogService = new BlogServiceImpl();
+    private final BlogServiceImpl blogService;
+    private final UserRepository userRepository;
 
-    public BlogController(){
-    }
-
-    @Autowired
-    public BlogController(BlogServiceImpl blogService) {
+    public BlogController(BlogServiceImpl blogService, UserRepository userRepository) {
         this.blogService = blogService;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/blog")
@@ -38,8 +40,9 @@ public class BlogController {
 
     @PostMapping("/blog/add")
     public String blogPostAddInfo(@RequestParam String titleWorkout, @RequestParam String workoutDay, @RequestParam String descriptionWorkout,
-                                  @RequestParam int durationOfTraining, Model model) {
-        blogService.blogPostAdd(titleWorkout, workoutDay, descriptionWorkout, durationOfTraining);
+                                  @RequestParam int durationOfTraining, @AuthenticationPrincipal UserDetails userDetails, Model model) {
+        User user = userRepository.findByUsername(userDetails.getUsername());
+        blogService.blogPostAdd(titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, user);
         return REDIRECT_BLOG;
     }
 

@@ -1,6 +1,7 @@
 package com.example.servingwebcontent.service.impl;
 
 import com.example.servingwebcontent.model.entity.Post;
+import com.example.servingwebcontent.model.entity.User;
 import com.example.servingwebcontent.model.repository.PostRepository;
 import com.example.servingwebcontent.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Post blogPostAdd(String titleWorkout, String workoutDay, String descriptionWorkout, int durationOfTraining) {
-        Post post = new Post(titleWorkout, workoutDay, descriptionWorkout, durationOfTraining);
+    public Post blogPostAdd(String titleWorkout, String workoutDay, String descriptionWorkout, int durationOfTraining, User user) {
+        Post post = new Post(titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, user);
         return postRepository.save(post);
     }
 
