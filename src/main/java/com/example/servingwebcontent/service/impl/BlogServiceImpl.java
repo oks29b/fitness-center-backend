@@ -1,11 +1,11 @@
 package com.example.servingwebcontent.service.impl;
 
+import com.example.servingwebcontent.exceptionHandling.NoSuchPostException;
 import com.example.servingwebcontent.model.entity.Post;
 import com.example.servingwebcontent.model.entity.User;
 import com.example.servingwebcontent.model.repository.PostRepository;
 import com.example.servingwebcontent.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -58,7 +58,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Post blogPostUpdate(long id, String titleWorkout, String workoutDay, String descriptionWorkout, int durationOfTraining) {
-        Post post = postRepository.findById(id).orElseThrow();
+        Post post = postRepository.findById(id).orElseThrow(() -> new NoSuchPostException("There is no post with id = " + id));
         post.setTitleWorkout(titleWorkout);
         post.setWorkoutDay(workoutDay);
         post.setDescriptionWorkout(descriptionWorkout);
@@ -68,7 +68,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Post blogPostRemove(long id) {
-        Post post = postRepository.findById(id).orElseThrow();
+        Post post = postRepository.findById(id).orElseThrow(() -> new NoSuchPostException("There is no post with id = " + id));
         postRepository.delete(post);
         return post;
     }
