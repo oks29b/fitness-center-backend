@@ -1,5 +1,7 @@
 package com.example.servingwebcontent.controller;
 
+import com.example.servingwebcontent.exceptionHandling.NoSuchPostException;
+import com.example.servingwebcontent.model.entity.Post;
 import com.example.servingwebcontent.model.entity.User;
 import com.example.servingwebcontent.model.repository.UserRepository;
 import com.example.servingwebcontent.service.impl.BlogServiceImpl;
