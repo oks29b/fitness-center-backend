@@ -1,13 +1,10 @@
 package com.example.servingwebcontent.controller;
 
-import com.example.servingwebcontent.exceptionHandling.NoSuchPostException;
-import com.example.servingwebcontent.model.entity.Post;
 import com.example.servingwebcontent.model.entity.User;
 import com.example.servingwebcontent.model.repository.UserRepository;
 import com.example.servingwebcontent.service.impl.BlogServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

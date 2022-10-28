@@ -4,6 +4,7 @@ import com.example.servingwebcontent.model.entity.Role;
 import com.example.servingwebcontent.model.entity.Status;
 import com.example.servingwebcontent.model.repository.UserRepository;
 import com.example.servingwebcontent.model.entity.User;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
