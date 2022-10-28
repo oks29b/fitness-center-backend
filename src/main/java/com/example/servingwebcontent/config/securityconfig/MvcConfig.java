@@ -1,4 +1,4 @@
-package com.example.servingwebcontent.config;
+package com.example.servingwebcontent.config.securityconfig;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -9,6 +9,5 @@ public class MvcConfig implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
-//        registry.addViewController("/blog").setViewName("blog");
     }
 }

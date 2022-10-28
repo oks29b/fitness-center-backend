@@ -1,4 +1,4 @@
-package com.example.servingwebcontent.exceptionHandling;
+package com.example.servingwebcontent.exceptionhandling;
 
 public class PostIncorrectData {
     private String info;

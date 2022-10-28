@@ -1,4 +1,4 @@
-package com.example.servingwebcontent.exceptionHandling;
+package com.example.servingwebcontent.exceptionhandling;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

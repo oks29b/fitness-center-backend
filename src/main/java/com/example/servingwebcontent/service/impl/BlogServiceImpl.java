@@ -1,11 +1,12 @@
 package com.example.servingwebcontent.service.impl;
 
-import com.example.servingwebcontent.exceptionHandling.NoSuchPostException;
+import com.example.servingwebcontent.exceptionhandling.NoSuchPostException;
 import com.example.servingwebcontent.model.entity.Post;
 import com.example.servingwebcontent.model.entity.User;
 import com.example.servingwebcontent.model.repository.PostRepository;
 import com.example.servingwebcontent.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
