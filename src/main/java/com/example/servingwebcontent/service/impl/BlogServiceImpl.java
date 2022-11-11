@@ -5,8 +5,6 @@ import com.example.servingwebcontent.model.entity.Post;
 import com.example.servingwebcontent.model.entity.User;
 import com.example.servingwebcontent.model.repository.PostRepository;
 import com.example.servingwebcontent.service.BlogService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,12 +13,8 @@ import java.util.Optional;
 
 @Service
 public class BlogServiceImpl implements BlogService {
-    private PostRepository postRepository;
+    private final PostRepository postRepository;
 
-    public BlogServiceImpl() {
-    }
-
-    @Autowired
     public BlogServiceImpl(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
@@ -33,6 +27,26 @@ public class BlogServiceImpl implements BlogService {
     public List<Post> blogGetMain(Long userId) {
         List<Post> posts = postRepository.findAllByUserId(userId);
         return posts;
+    }
+
+    @Override
+    public List<Post> blogFilter(String filter, List<Post> posts){
+        List<Post> filterPost = new ArrayList<>();
+        if(filter != null && !filter.isEmpty()) {
+            for (Post i : posts) {
+                if (i.getTitleWorkout().equals(filter)) {
+                    filterPost.add(i);
+                }
+            }
+            return filterPost;
+        }else {
+            return posts;
+        }
+    }
+
+    @Override
+    public List<Post> findAll() {
+        return postRepository.findAll();
     }
 
     @Override
