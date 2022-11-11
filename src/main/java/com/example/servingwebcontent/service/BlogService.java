@@ -9,6 +9,10 @@ import java.util.List;
 public interface BlogService {
     public List<Post> blogGetMain(Long userId);
 
+    List<Post> blogFilter(String filter, List<Post> posts);
+
+    public List<Post> findAll();
+
     public Post blogPostAdd(String titleWorkout, String workoutDay,
                                       String descriptionWorkout, int durationOfTraining, User user);
 

@@ -1,5 +1,6 @@
 package com.example.servingwebcontent.controller;
 
+import com.example.servingwebcontent.model.entity.Post;
 import com.example.servingwebcontent.model.entity.User;
 import com.example.servingwebcontent.model.repository.UserRepository;
 import com.example.servingwebcontent.service.impl.BlogServiceImpl;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -27,15 +31,33 @@ public class BlogController {
     }
 
     @GetMapping("/blog")
-    public String blogMain(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+    public String blogMain(
+            @RequestParam(required = false, defaultValue = "") String filter,
+            @AuthenticationPrincipal UserDetails userDetails,
+            Model model
+    ) {
         User user = userRepository.findByUsername(userDetails.getUsername());
-        model.addAttribute("posts", blogService.blogGetMain(user.getId()));
+        List<Post> posts = blogService.blogGetMain(user.getId());
+        model.addAttribute("posts", posts);
         return "blog-main";
     }
 
     @GetMapping("/blog/add")
     public String blogAdd(Model model) {
         return "blog-add";
+    }
+
+    @GetMapping("/blogFilter")
+    public String blogFilter(@RequestParam(required = false, defaultValue = "") String filter,
+                             @AuthenticationPrincipal UserDetails userDetails,
+                             Model model){
+        User user = userRepository.findByUsername(userDetails.getUsername());
+        List<Post> posts = blogService.blogGetMain(user.getId());
+        if(posts != null) {
+            model.addAttribute("posts", blogService.blogFilter(filter, posts));
+            model.addAttribute("filter", filter);
+        }
+    return "blog-main";
     }
 
     @PostMapping("/blog/add")
