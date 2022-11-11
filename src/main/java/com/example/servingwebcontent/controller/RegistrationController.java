@@ -30,8 +30,8 @@ public class RegistrationController {
     @PostMapping("/registration")
     public String addUser(User user, Model model) {
         User userFromDb = userRepo.findByUsername(user.getUsername());
-        if (userFromDb != userRepo.findByUsername(user.getUsername())) {
-            model.addAttribute("post", "User exists");
+        if (userFromDb != null) {
+            model.addAttribute("post", "User " + userFromDb.getUsername() + " already exists");
             return "registration";
         }
 

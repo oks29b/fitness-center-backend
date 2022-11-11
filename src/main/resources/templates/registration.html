@@ -21,22 +21,28 @@ background-size: cover;
 
 </head>
 <body>
+
 <div class="container">
     <div class="row justify-content-center align-items-center">
-        <!--проверка, есть ли такой пользователь уже-->
-        <!--<div th:if="${not #lists.isEmpty(post)}">-->
-        <!--    post-->
-        <!--</div>-->
 
         <form action="/registration" method="post" form-horizontal>
             <br>
             <span class="heading">РЕГИСТРАЦИЯ</span>
             <br>
-            <div><label> Имя пользователя : <input type="text" class="form-control" name="username"/> </label></div>
-            <div><label> Пароль: <input type="password" class="form-control" name="password"/> </label></div>
-            <div><input type="submit" value="Зарегистрироваться"/></div>
+            <div class="form-group">
+                <div><label> Имя пользователя : <input type="text" class="form-control" name="username"/> </label></div>
+                <div><label> Пароль: <input type="password" class="form-control" name="password"/> </label></div>
+                <div><input type="submit" value="Зарегистрироваться"/></div>
+            </div>
+            <br>
+            <!--проверка, есть ли такой пользователь уже-->
+            <div th:if="${post != null}" >
+                <span th:text="${post}" class="alert alert-danger notification" role="alert"></span>
+            </div>
         </form>
+
     </div>
+
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
