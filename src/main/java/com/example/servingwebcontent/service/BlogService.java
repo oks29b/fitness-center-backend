@@ -14,7 +14,8 @@ public interface BlogService {
     public List<Post> findAll();
 
     public Post blogPostAdd(String titleWorkout, String workoutDay,
-                                      String descriptionWorkout, int durationOfTraining, User user);
+                                      String descriptionWorkout, int durationOfTraining,String filename, User user);
+
 
     public List<Post> blogPostDetails(long id);
 
