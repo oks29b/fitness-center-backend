@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Детально</title>
+    <title>Details</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
@@ -17,10 +18,12 @@
     <div th:each="el :  ${post}" class="alert alert-info mt-2">
         <h1 th:text="${el.titleWorkout}"/>
         <p th:text="${el.descriptionWorkout}"/>
-        <p><b>Длительность тренировки:</b> <span th:text="${el.durationOfTraining}"/></p>
-        <a th:href=" '/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a><br><br>
+        <p><b>Duration of training:</b> <span th:text="${el.durationOfTraining}"/></p>
+        <p><b>Photo from training:</b></p>
+        <p><img th:src="@{'/img/' + ${el.getFileName()}}" class="img-thumbnail"/></p>
+        <a th:href=" '/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Edit</a><br><br>
         <form th:action=" '/blog/' + ${el.id} + '/remove'" method="post">
-            <button class="btn btn-warning" type="submit">Удалить</button>
+            <button class="btn btn-warning" type="submit">Delete</button>
         </form>
     </div>
 </div>

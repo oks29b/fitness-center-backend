@@ -50,8 +50,9 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Post blogPostAdd(String titleWorkout, String workoutDay, String descriptionWorkout, int durationOfTraining, User user) {
-        Post post = new Post(titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, user);
+    public Post blogPostAdd(String titleWorkout, String workoutDay,
+                            String descriptionWorkout, int durationOfTraining,String filename, User user) {
+        Post post = new Post(titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, filename, user);
         return postRepository.save(post);
     }
 

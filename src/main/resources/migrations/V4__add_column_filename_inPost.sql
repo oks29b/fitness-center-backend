@@ -1,0 +1,1 @@
+alter table post add file_name varchar(255);

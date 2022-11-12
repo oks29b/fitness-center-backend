@@ -14,14 +14,21 @@
 <header th:insert="blocks/header :: header"></header>
 <div class="container mt-5 mb-5">
     <h1>Добавление тренировки</h1>
-    <form action="/blog/add" method="post">
+    <form action="/blog/add" method="post" enctype="multipart/form-data">
         <input type="text" name="titleWorkout" placeholder="Введите название тренировки" class="form-control"><br>
         <input type="date" name="workoutDay" placeholder="Введите день тренировки" class="form-control"><br>
         <textarea name="descriptionWorkout" placeholder="Введите описание тренировки"
                   class="form-control"></textarea><br>
         <input type="text" name="durationOfTraining" placeholder="Введите длительность тренировки тренировки"
                class="form-control"><br>
-        <button type="submit" class="btn btn-success">Добавить тренировку</button>
+
+        <div class="form-group">
+            <div class="custom-file">
+                <input type="file" name="file" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Add</button>
     </form>
 </div>
 
