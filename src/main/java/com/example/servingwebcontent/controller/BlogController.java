@@ -77,6 +77,12 @@ public class BlogController {
                                   @RequestParam("file")MultipartFile file) throws IOException {
         User user = userRepository.findByUsername(userDetails.getUsername());
 
+        blogService.blogPostAdd(titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, getFileName(file), user);
+
+        return REDIRECT_BLOG;
+    }
+
+    private String getFileName(MultipartFile file) throws IOException {
         String resultFileName = "";
 
         if(file != null && !file.getOriginalFilename().isEmpty()){
@@ -89,11 +95,8 @@ public class BlogController {
             String uuidFile = UUID.randomUUID().toString();
             resultFileName = uuidFile + "." + file.getOriginalFilename();
             file.transferTo(new File(uploadPath + "/" + resultFileName));
-        }
-
-        blogService.blogPostAdd(titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, resultFileName, user);
-
-        return REDIRECT_BLOG;
+        }else {resultFileName = null;}
+        return resultFileName;
     }
 
     @GetMapping("/blog/{id}")
@@ -115,9 +118,16 @@ public class BlogController {
     }
 
     @PostMapping("/blog/{id}/edit")
-    public String blogPostUpdateInfo(@PathVariable(value = "id") long id, @RequestParam String titleWorkout, @RequestParam String workoutDay,
-                                     @RequestParam String descriptionWorkout, @RequestParam int durationOfTraining, Model model) {
-        blogService.blogPostUpdate(id, titleWorkout, workoutDay, descriptionWorkout, durationOfTraining);
+    public String blogPostUpdateInfo(@PathVariable(value = "id") long id,
+                                     @RequestParam String titleWorkout,
+                                     @RequestParam String workoutDay,
+                                     @RequestParam String descriptionWorkout,
+                                     @RequestParam int durationOfTraining,
+                                     @RequestParam("file") MultipartFile file,
+                                     Model model) throws IOException {
+
+            blogService.blogPostUpdate(id, titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, getFileName(file));
+
         return REDIRECT_BLOG;
     }
 

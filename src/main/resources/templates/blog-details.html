@@ -20,11 +20,18 @@
         <p th:text="${el.descriptionWorkout}"/>
         <p><b>Duration of training:</b> <span th:text="${el.durationOfTraining}"/></p>
         <p><b>Photo from training:</b></p>
-        <p><img th:src="@{'/img/' + ${el.getFileName()}}" class="img-thumbnail"/></p>
+        <div th:if="${el.fileName}">
+            <p><img th:src="@{'/img/' + ${el.fileName}}" class="img-thumbnail"/></p>
+        </div>
+        <div th:unless="${el.fileName}">
+            <p>There is no photo</p>
+        </div>
+
         <a th:href=" '/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Edit</a><br><br>
         <form th:action=" '/blog/' + ${el.id} + '/remove'" method="post">
-            <button class="btn btn-warning" type="submit">Delete</button>
+            <button class="btn btn-warning" type="submit">Delete</button><br><br>
         </form>
+        <a th:href="'/blog/'" class="btn btn-warning">Back to blog</a><br><br>
     </div>
 </div>
 

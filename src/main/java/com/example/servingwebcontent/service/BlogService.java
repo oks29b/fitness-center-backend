@@ -22,7 +22,7 @@ public interface BlogService {
     public List<Post> blogEditInfo(long id);
 
     public Post blogPostUpdate(long id, String titleWorkout, String workoutDay,
-                               String descriptionWorkout, int durationOfTraining);
+                               String descriptionWorkout, int durationOfTraining, String filename);
 
     public Post blogPostRemove(long id);
 }

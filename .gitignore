@@ -24,13 +24,16 @@
 *.iws
 *.iml
 *.ipr
+*.jpg
 out/
 !/src/main//out/
 !/src/test//out/
 
+
 # Idea Projects
 *.iml
 .gradle/
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 target
