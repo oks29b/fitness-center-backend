@@ -73,12 +73,13 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Post blogPostUpdate(long id, String titleWorkout, String workoutDay, String descriptionWorkout, int durationOfTraining) {
+    public Post blogPostUpdate(long id, String titleWorkout, String workoutDay, String descriptionWorkout, int durationOfTraining, String fileName) {
         Post post = postRepository.findById(id).orElseThrow(() -> new NoSuchPostException("There is no post with id = " + id));
         post.setTitleWorkout(titleWorkout);
         post.setWorkoutDay(workoutDay);
         post.setDescriptionWorkout(descriptionWorkout);
         post.setDurationOfTraining(durationOfTraining);
+        post.setFileName(fileName);
         return postRepository.save(post);
     }
 

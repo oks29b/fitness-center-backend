@@ -14,18 +14,24 @@
 <header th:insert="blocks/header :: header"></header>
 >
 <div class="container mt-5 mb-5">
-    <h1>Редактирование тренировки</h1>
+    <h1>Edit training</h1>
     <div th:each="el : ${post}">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <input type="text" th:value="${el.titleWorkout}" name="titleWorkout"
-                   placeholder="Введите название тренировки" class="form-control"><br>
-            <input type="date" th:value="${el.workoutDay}" name="workoutDay" placeholder="Введите дату тренировки"
+                   placeholder="Enter name of workout" class="form-control"><br>
+            <input type="date" th:value="${el.workoutDay}" name="workoutDay" placeholder="Enter date of training"
                    class="form-control"><br>
-            <textarea name="descriptionWorkout" placeholder="Введите описание тренировки" class="form-control"
+            <textarea name="descriptionWorkout" placeholder="Enter description of workout" class="form-control"
                       th:text="${el.descriptionWorkout}"/><br>
             <input type="text" th:value="${el.durationOfTraining}" name="durationOfTraining"
-                   placeholder="Введите длительность тренировки" class="form-control"><br>
-            <button type="submit" class="btn btn-success">Обновить</button>
+                   placeholder="Enter time of training" class="form-control"><br>
+            <div class="custom-file">
+                <input type="file" th:value="${el.fileName}" name="file" id="customFile" >
+                <label class="custom-file-label" for="customFile">Choose file</label><br>
+            </div>
+            <button type="submit" class="btn btn-success">Update</button><br><br>
+
+            <a th:href="'/blog/' + ${el.id} " class="btn btn-link">Back to post</a><br><br>
         </form>
     </div>
 </div>

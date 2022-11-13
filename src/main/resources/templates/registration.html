@@ -27,12 +27,14 @@ background-size: cover;
 
         <form action="/registration" method="post" form-horizontal>
             <br>
-            <span class="heading">РЕГИСТРАЦИЯ</span>
+            <span class="heading">REGISTRATION</span>
             <br>
             <div class="form-group">
-                <div><label> Имя пользователя : <input type="text" class="form-control" name="username"/> </label></div>
-                <div><label> Пароль: <input type="password" class="form-control" name="password"/> </label></div>
-                <div><input type="submit" value="Зарегистрироваться"/></div>
+                <div><label> Name user : <input type="text" class="form-control" name="username"/> </label></div>
+                <div><label> Password: <input type="password" class="form-control" name="password"/> </label></div>
+                <div><input type="submit" value="Register"/></div><br>
+                <a th:href="'/login'" class="btn btn-link">Back to login page</a><br>
+                <a th:href="'/'" class="btn btn-link">Back to main page</a>
             </div>
             <br>
             <!--проверка, есть ли такой пользователь уже-->
