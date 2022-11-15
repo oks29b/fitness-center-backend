@@ -5,7 +5,6 @@ import com.example.servingwebcontent.model.entity.User;
 import com.example.servingwebcontent.model.repository.UserRepository;
 import com.example.servingwebcontent.service.impl.BlogServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -18,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
