@@ -63,7 +63,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     private void sendMessage(User user) {
-        if(!StringUtils.isEmpty(user.getEmail())){
+        if(!StringUtils.hasLength(user.getEmail())){
             String message = String.format(
                     "hello, %s! \n" +
                             "welcome to app. Please, visit next link: http://localhost:8090/activate/%s",
@@ -117,7 +117,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (isEmailChanged){
             user.setEmail(email);
 
-            if (!StringUtils.isEmpty(email)){
+            if (!StringUtils.hasLength(email)){
                 user.setActivationCode(UUID.randomUUID().toString());
             }
         }
