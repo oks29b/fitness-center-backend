@@ -1,17 +1,6 @@
-<!--<!DOCTYPE HTML>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <title>All training</title>-->
-<!--    <meta charset="utf-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
-
-<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
-<!--          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-
-<!--</head>-->
-<!--<body>-->
 <header th:insert="blocks/header :: header('Profile')"></header>
+<br>
+<br>
 <br>
 
 
@@ -26,12 +15,13 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Email:</label>
         <div class="col-sm-6">
-            <input type="email" name="email" class="form-control" placeholder="some@some.com" value="${email!''}" />
+            <input type="email" name="email" class="form-control" placeholder="some@some.com" th:value="${email}" />
         </div>
     </div>
-    <input type="hidden" name="_csrf" value="${_csrf.token}" />
     <button class="btn btn-primary" type="submit">Save</button>
 </form>
+<br>
+<a th:href="'/blog/'" class="btn btn-link">Back to blog</a><br><br>
 
 
 <div th:insert="blocks/footer :: footer"></div>

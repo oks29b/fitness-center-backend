@@ -53,17 +53,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         user.setActivationCode(UUID.randomUUID().toString());
         user.setPassword(passwordEncoder.encode(user.getUsername()));
         user.setStatus(Status.ACTIVE);
-        user.setRole(Collections.singleton(Role.USER));
-
-        userRepository.save(user);
+        user.setRole(Collections.singleton(Role.ROLE_USER));
 
         sendMessage(user);
+        userRepository.save(user);
 
         return true;
     }
 
     private void sendMessage(User user) {
-        if(!StringUtils.hasLength(user.getEmail())){
+        if(StringUtils.hasLength(user.getEmail())){
             String message = String.format(
                     "hello, %s! \n" +
                             "welcome to app. Please, visit next link: http://localhost:8090/activate/%s",
@@ -92,6 +91,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return userRepository.findAll();
     }
 
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username);
+    }
+
     public void saveUser(User user, String username, Map<String, String> form) {
         user.setUsername(username);
 
@@ -117,13 +120,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (isEmailChanged){
             user.setEmail(email);
 
-            if (!StringUtils.hasLength(email)){
+            if (StringUtils.hasLength(email)){
                 user.setActivationCode(UUID.randomUUID().toString());
             }
         }
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
-        if (!StringUtils.isEmpty(password)){
+        if (StringUtils.hasLength(password)){
             user.setPassword(passwordEncoder.encode(password));
         }
 

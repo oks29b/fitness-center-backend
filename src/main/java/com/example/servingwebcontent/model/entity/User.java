@@ -39,7 +39,7 @@ public class User {
     private Status status;
 
     public boolean isAdmin(){
-        return role.contains(Role.ADMIN);
+        return role.contains(Role.ROLE_ADMIN);
     }
 
 }

@@ -34,20 +34,21 @@ public class WebSecurityConfig{
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/registration", "/login", "/static/**", "/activate/*", "/about").permitAll()
-                .anyRequest()
-                .authenticated()
+                    .antMatchers("/", "/registration", "/login", "/static/**", "/activate/*", "/about").permitAll()
+                    .antMatchers("/user**").hasRole("ADMIN")
+                    .anyRequest()
+                    .authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/blog")
+                    .formLogin()
+                    .loginPage("/login").permitAll()
+                    .defaultSuccessUrl("/blog")
                 .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "POST"))
-                .invalidateHttpSession(true)
-                .clearAuthentication(true)
-                .deleteCookies("JSESSIONID")
-                .logoutSuccessUrl("/login");
+                    .logout()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "POST"))
+                    .invalidateHttpSession(true)
+                    .clearAuthentication(true)
+                    .deleteCookies("JSESSIONID")
+                    .logoutSuccessUrl("/login");
         return http.build();
     }
 

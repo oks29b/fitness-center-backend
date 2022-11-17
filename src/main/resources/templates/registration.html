@@ -65,14 +65,15 @@
                 </div>
 
                 <br>
-                <div class="g-recaptcha" data-sitekey="6LcaMu4iAAAAAGbAaWlgP1nlS0JUP9G1gRN7NL8Q">
+                <div>
+                <div class="g-recaptcha" data-sitekey="6LcaMu4iAAAAAGbAaWlgP1nlS0JUP9G1gRN7NL8Q"></div>
                     <div th:if="${captchaError != null}">
                         <div class="alert alert-danger" role="alert">
                             <p th:text="${captchaError}"/>
                         </div>
                     </div>
                 </div>
-
+                <br>
                 <div><input type="submit" value="Register"/></div><br>
 
                 <a th:href="'/login'" class="btn btn-link">Back to login page</a><br>
@@ -81,10 +82,6 @@
             </div>
             <br>
 
-            <!--проверка, есть ли такой пользователь уже-->
-<!--            <div th:if="${post != null}" >-->
-<!--                <span th:text="${post}" class="alert alert-danger notification" role="alert"></span>-->
-<!--            </div>-->
         </form>
 
     </div>
