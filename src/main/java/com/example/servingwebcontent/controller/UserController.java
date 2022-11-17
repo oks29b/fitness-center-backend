@@ -5,6 +5,7 @@ import com.example.servingwebcontent.model.entity.User;
 import com.example.servingwebcontent.security.UserDetailsServiceImpl;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -49,17 +50,19 @@ public class UserController {
     }
 
     @GetMapping("profile")
-    public String getProfile(Model model, @AuthenticationPrincipal User user){
+    public String getProfile(Model model, @AuthenticationPrincipal UserDetails userDetails){
+        User user = userDetailsService.findByUsername(userDetails.getUsername());
         model.addAttribute("username", user.getUsername());
         model.addAttribute("email", user.getEmail());
         return "profile";
     }
 
+
     @PostMapping("profile")
-    public String updateProfile(@AuthenticationPrincipal User user,
+    public String updateProfile(@AuthenticationPrincipal UserDetails userDetails,
                                 @RequestParam String password,
                                 @RequestParam String email){
-
+        User user = userDetailsService.findByUsername(userDetails.getUsername());
         userDetailsService.updateProfile(user, password, email);
 
         return "redirect:/user/profile";
