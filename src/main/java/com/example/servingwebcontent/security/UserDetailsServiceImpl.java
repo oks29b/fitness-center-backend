@@ -95,7 +95,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return userRepository.findByUsername(username);
     }
 
-    public void saveUser(User user, String username, Map<String, String> form) {
+    public void saveUser(User user, String username, Map<String, String> form, String status) {
         user.setUsername(username);
 
         Set<String> roles = Arrays.stream(Role.values())
@@ -109,6 +109,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 user.getRole().add(Role.valueOf(key));
             }
         }
+
+        user.setStatus(Status.valueOf(status));
 
         userRepository.save(user);
     }
