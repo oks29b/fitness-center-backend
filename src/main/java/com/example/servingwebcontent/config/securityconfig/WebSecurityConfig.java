@@ -35,7 +35,8 @@ public class WebSecurityConfig{
                 .csrf().disable()
                 .authorizeRequests()
                     .antMatchers("/", "/registration", "/login", "/static/**", "/activate/*", "/about").permitAll()
-//                    .antMatchers("/user**").hasRole("ADMIN")
+                    .antMatchers("/blog**").hasAnyRole("USER","ADMIN")
+                    .antMatchers("/admin**").hasRole("ADMIN")
                     .anyRequest()
                     .authenticated()
                 .and()
@@ -48,7 +49,7 @@ public class WebSecurityConfig{
                     .invalidateHttpSession(true)
                     .clearAuthentication(true)
                     .deleteCookies("JSESSIONID")
-                    .logoutSuccessUrl("/login");
+                    .logoutSuccessUrl("/");
         return http.build();
     }
 
