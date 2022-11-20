@@ -136,7 +136,7 @@ public class BlogController {
         return REDIRECT_BLOG;
     }
 
-    @GetMapping("blog/profile")
+    @GetMapping("/profile")
     public String getProfile(Model model, @AuthenticationPrincipal UserDetails userDetails){
         User user = userDetailsService.findByUsername(userDetails.getUsername());
         model.addAttribute("username", user.getUsername());
@@ -145,13 +145,13 @@ public class BlogController {
     }
 
 
-    @PostMapping("blog/profile")
+    @PostMapping("/profile")
     public String updateProfile(@AuthenticationPrincipal UserDetails userDetails,
                                 @RequestParam String password,
                                 @RequestParam String email){
         User user = userDetailsService.findByUsername(userDetails.getUsername());
         userDetailsService.updateProfile(user, password, email);
 
-        return "redirect:/blog/profile";
+        return "redirect:/blog";
     }
 }

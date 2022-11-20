@@ -33,7 +33,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, LockedException  {
         User user = userRepository.findByUsername(username);
         if (user == null){
-            new UsernameNotFoundException(username + "doesn't exists");
+            new UsernameNotFoundException(username + " doesn't exists");
         }
 
         if(user.getActivationCode() != null){
@@ -116,8 +116,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     public void updateProfile(User user, String password, String email) {
+
+
         String userEmail = user.getEmail();
-        boolean isEmailChanged = (email != null && !email.equals(userEmail)) || (userEmail != null && !userEmail.equals(email));
+        boolean isEmailChanged = (email != null && !email.equals(userEmail));
 
         if (isEmailChanged){
             user.setEmail(email);
@@ -132,7 +134,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             user.setPassword(passwordEncoder.encode(password));
         }
 
-        userRepository.save(user);
+            userRepository.save(user);
 
         if(isEmailChanged){
             sendMessage(user);
