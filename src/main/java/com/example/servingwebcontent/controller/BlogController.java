@@ -3,6 +3,7 @@ package com.example.servingwebcontent.controller;
 import com.example.servingwebcontent.model.entity.Post;
 import com.example.servingwebcontent.model.entity.User;
 import com.example.servingwebcontent.model.repository.UserRepository;
+import com.example.servingwebcontent.security.UserDetailsServiceImpl;
 import com.example.servingwebcontent.service.impl.BlogServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -29,11 +30,11 @@ public class BlogController {
     private String uploadPath;
 
     private final BlogServiceImpl blogService;
-    private final UserRepository userRepository;
+    private final UserDetailsServiceImpl userDetailsService;
 
-    public BlogController(BlogServiceImpl blogService, UserRepository userRepository) {
+    public BlogController(BlogServiceImpl blogService, UserDetailsServiceImpl userDetailsService) {
         this.blogService = blogService;
-        this.userRepository = userRepository;
+        this.userDetailsService = userDetailsService;
     }
 
     @GetMapping("/blog")
@@ -41,7 +42,7 @@ public class BlogController {
             @AuthenticationPrincipal UserDetails userDetails,
             Model model
     ) {
-        User user = userRepository.findByUsername(userDetails.getUsername());
+        User user = userDetailsService.findByUsername(userDetails.getUsername());
         List<Post> posts = blogService.blogGetMain(user.getId());
         model.addAttribute("posts", posts);
         return "blog-main";
@@ -56,7 +57,7 @@ public class BlogController {
     public String blogFilter(@RequestParam(required = false, defaultValue = "") String filter,
                              @AuthenticationPrincipal UserDetails userDetails,
                              Model model){
-        User user = userRepository.findByUsername(userDetails.getUsername());
+        User user = userDetailsService.findByUsername(userDetails.getUsername());
         List<Post> posts = blogService.blogGetMain(user.getId());
         if(posts != null) {
             model.addAttribute("posts", blogService.blogFilter(filter, posts));
@@ -73,7 +74,7 @@ public class BlogController {
                                   @AuthenticationPrincipal UserDetails userDetails,
                                   Model model,
                                   @RequestParam("file")MultipartFile file) throws IOException {
-        User user = userRepository.findByUsername(userDetails.getUsername());
+        User user = userDetailsService.findByUsername(userDetails.getUsername());
 
         blogService.blogPostAdd(titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, getFileName(file), user);
 
@@ -133,5 +134,24 @@ public class BlogController {
     public String blogPostRemoveFromList(@PathVariable(value = "id") long id, Model model) {
         blogService.blogPostRemove(id);
         return REDIRECT_BLOG;
+    }
+
+    @GetMapping("blog/profile")
+    public String getProfile(Model model, @AuthenticationPrincipal UserDetails userDetails){
+        User user = userDetailsService.findByUsername(userDetails.getUsername());
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("email", user.getEmail());
+        return "profile";
+    }
+
+
+    @PostMapping("blog/profile")
+    public String updateProfile(@AuthenticationPrincipal UserDetails userDetails,
+                                @RequestParam String password,
+                                @RequestParam String email){
+        User user = userDetailsService.findByUsername(userDetails.getUsername());
+        userDetailsService.updateProfile(user, password, email);
+
+        return "redirect:/blog/profile";
     }
 }
