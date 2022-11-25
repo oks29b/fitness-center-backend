@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -38,8 +39,7 @@ public class User {
     @Column(name = "status")
     private Status status;
 
-    public boolean isAdmin(){
-        return role.contains(Role.ROLE_ADMIN);
-    }
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 
 }
