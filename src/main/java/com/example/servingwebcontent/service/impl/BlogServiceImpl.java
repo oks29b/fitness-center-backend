@@ -84,9 +84,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Post blogPostRemove(long id) {
+    public void blogPostRemove(long id) {
         Post post = postRepository.findById(id).orElseThrow(() -> new NoSuchPostException("There is no post with id = " + id));
         postRepository.delete(post);
-        return post;
     }
 }
