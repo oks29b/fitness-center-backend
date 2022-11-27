@@ -43,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void updateProduct(Product product, String description, Integer quantity, BigDecimal price) {
         product.setDescription(description);
-        product.setQuantity(quantity);
+        product.setCurrentQuantity(quantity);
         product.setPrice(price);
         productRepository.save(product);
     }
