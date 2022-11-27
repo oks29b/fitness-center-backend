@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @Data
@@ -25,13 +26,9 @@ public class Order implements Serializable {
 
     private LocalDateTime orderDateTime;
 
-    @DecimalMin(value = "0.00", message = "*Price has to be non negative number")
-    private BigDecimal totalPrice;
-
     @Enumerated(EnumType.STRING)
     private Status orderStatus;
 
-    private String notes;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")

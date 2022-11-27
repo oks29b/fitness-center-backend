@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
-<header th:insert="blocks/header :: header('Profile')"></header>
+<header th:insert="blocks/header :: header('Shop')"></header>
 <br>
 <br>
 <br>
@@ -15,9 +15,9 @@
         <h3 th:text="${product.description}" class="panel-body">Description</h3>
         <div class="row panel-footer">
             <div th:inline="text" class="col-md-2">Price: [[${product.price}]] $</div>
-            <div th:inline="text" class="col-md-9">In Stock: [[${product.quantity}]]</div>
+            <div th:inline="text" class="col-md-9">In Stock: [[${product.currentQuantity}]]</div>
             <a th:href="@{'/shoppingCart/addProduct/{id}'(id=${product.id})}" class="col-md-1"
-               sec:authorize="isAuthenticated()" th:if="${product.quantity}>0">
+               sec:authorize="isAuthenticated()" th:if="${product.currentQuantity}>0">
                 <button type="button" class="btn btn-primary" th:text="Buy">Buy</button>
             </a>
         </div>

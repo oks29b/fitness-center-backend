@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @Table(name = "order_detail")
-@ToString
+//возможно понадобиться tostring.exlude
 public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +23,10 @@ public class OrderDetail {
     private int totalQuantity;
 
     @DecimalMin(value = "0.00", message = "*Price has to be non negative number")
+    @Column(name = "total_price", columnDefinition = "Decimal(10,2) default '0.00'")
     private BigDecimal totalPrice;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private Order order;
 
