@@ -25,8 +25,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<Post> blogGetMain(Long userId) {
-        List<Post> posts = postRepository.findAllByUserId(userId);
-        return posts;
+        return postRepository.findAllByUserId(userId);
     }
 
     @Override
