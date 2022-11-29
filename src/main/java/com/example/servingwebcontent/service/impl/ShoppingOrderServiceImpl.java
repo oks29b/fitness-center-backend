@@ -67,15 +67,11 @@ public class ShoppingOrderServiceImpl implements ShoppingOrderService {
     public void addProductToOrder(Long productId, User user) {
         Product productDb = productRepository.findProductById(productId);
         addProduct(productDb);
-        int quantity = products.get(productDb);
+        int quantity = products.getOrDefault(productDb, 0);
 
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setTotalQuantity(quantity);
-        if(productDb.getPrice() != null) {
-            orderDetail.setTotalPrice(productDb.getPrice().multiply(BigDecimal.valueOf(quantity)));
-        }else {
-            orderDetail.setTotalPrice(BigDecimal.ZERO);
-        }
+        orderDetail.setTotalPrice(productDb.getPrice().multiply(BigDecimal.valueOf(quantity)));
         orderDetail.setProduct(productDb);
         orderDetail.setOrder(createNewOrder(user));
         orderDetailsRepository.save(orderDetail);

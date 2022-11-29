@@ -26,7 +26,8 @@ public class Order implements Serializable {
 
     private LocalDateTime orderDateTime;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "order_status")
     private Status orderStatus;
 
 

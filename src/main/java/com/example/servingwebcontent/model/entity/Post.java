@@ -3,6 +3,7 @@ package com.example.servingwebcontent.model.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -33,5 +34,16 @@ public class Post {
         this.user = user;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return durationOfTraining == post.durationOfTraining && Objects.equals(id, post.id) && Objects.equals(titleWorkout, post.titleWorkout) && Objects.equals(workoutDay, post.workoutDay) && Objects.equals(descriptionWorkout, post.descriptionWorkout) && Objects.equals(fileName, post.fileName);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, titleWorkout, workoutDay, descriptionWorkout, durationOfTraining, fileName);
+    }
 }

@@ -51,9 +51,6 @@ public class ShoppingOrderController {
         }
 
         model.addAttribute("orderProducts", userOrderProductList);
-
-//        model.addAttribute("products", shoppingOrderService.getProductsInOrder());
-//        model.addAttribute("total", shoppingOrderService.getTotal().toString());
         return "shoppingCart";
     }
 
