@@ -74,7 +74,6 @@ public class RegistrationController {
             return "registration";
         }
 
-
         if(!userDetailsService.addUser(user)){
             model.addAttribute("usernameError", "User exists!");
             return "registration";

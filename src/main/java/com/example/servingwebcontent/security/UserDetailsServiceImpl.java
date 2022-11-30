@@ -37,7 +37,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
         if(user.getActivationCode() != null){
-            throw new LockedException("User "+ user.getUsername() +" not yet activated. Please check your email and activate it"); // may be it's not need
+            throw new LockedException("User "+ user.getUsername() +" not yet activated. Please check your email and activate it");
         }
 
         return SecurityUser.fromUser(user);

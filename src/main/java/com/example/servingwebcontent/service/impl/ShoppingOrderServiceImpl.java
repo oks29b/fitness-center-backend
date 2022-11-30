@@ -8,7 +8,6 @@ import com.example.servingwebcontent.model.repository.ProductRepository;
 import com.example.servingwebcontent.model.repository.UserRepository;
 import com.example.servingwebcontent.service.ShoppingOrderService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
@@ -33,6 +32,8 @@ public class ShoppingOrderServiceImpl implements ShoppingOrderService {
 
     private final ProductRepository productRepository;
     private final OrderDetailsRepository orderDetailsRepository;
+
+    private final OrderRepository orderRepository;
     private final UserRepository userRepository;
     private Map<Product, Integer> products = new HashMap<>();
 
@@ -49,7 +50,6 @@ public class ShoppingOrderServiceImpl implements ShoppingOrderService {
             products.put(product, 1);
         }
     }
-
 
     @Override
     public List<Order> getOrdersByUserId(Long id) {
@@ -89,7 +89,6 @@ public class ShoppingOrderServiceImpl implements ShoppingOrderService {
         return order;
     }
 
-
     /**
      * If product is in the map with quantity > 1, just decrement quantity by 1.
      * If product is in the map with quantity 1, remove it from map
@@ -105,6 +104,7 @@ public class ShoppingOrderServiceImpl implements ShoppingOrderService {
                 products.remove(product);
             }
         }
+
     }
 
     /**
@@ -124,10 +124,10 @@ public class ShoppingOrderServiceImpl implements ShoppingOrderService {
     public void checkout() throws NotEnoughProductsInStockException {
         Product product;
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
-            // Refresh quantity for every product before checking
-            product = productRepository.findById(entry.getKey().getId()).orElse(null);
-            if (product.getCurrentQuantity() < entry.getValue())
+            product = productRepository.findById(entry.getKey().getId()).orElse(null); // Refresh quantity for every product before checking
+            if (product.getCurrentQuantity() < entry.getValue()) {
                 throw new NotEnoughProductsInStockException(product);
+            }
             entry.getKey().setCurrentQuantity(product.getCurrentQuantity() - entry.getValue());
         }
         productRepository.saveAllAndFlush(products.keySet());
@@ -141,4 +141,5 @@ public class ShoppingOrderServiceImpl implements ShoppingOrderService {
                 .reduce(BigDecimal::add)
                 .orElse(BigDecimal.ZERO);
     }
+
 }
