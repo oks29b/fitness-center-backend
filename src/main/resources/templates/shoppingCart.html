@@ -13,10 +13,13 @@
     </h1>
 
     <div class="alert alert-info" th:if="${outOfStockMessage}" th:utext="${outOfStockMessage}"></div>
+    <div class="alert alert-info" th:if="${orders}" th:utext="${orders}"></div>
+
 
         <div class="panel-default well" th:each="mapEntry : ${orderProducts}">
-            <span th:text="${mapEntry.key}">ordervalue</span>
-
+            <span th:inline="text" class="col-md-2">
+                <h1>Order number: [[${mapEntry.key.id}]]</h1>
+            </span>
 
                 <div class="panel-default well" th:each="product : ${mapEntry.value}">
                     <div class="panel-heading">
@@ -30,7 +33,7 @@
                             <button type="button" class="btn btn-primary" th:text="Remove">Remove</button>
                         </a>
                     </div>
-                    <br></br>
+
                 </div>
 
                 <div class="row panel-body">

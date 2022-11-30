@@ -2,7 +2,6 @@ package com.example.servingwebcontent.controller;
 
 import com.example.servingwebcontent.model.entity.Post;
 import com.example.servingwebcontent.model.entity.User;
-import com.example.servingwebcontent.model.repository.UserRepository;
 import com.example.servingwebcontent.security.UserDetailsServiceImpl;
 import com.example.servingwebcontent.service.impl.BlogServiceImpl;
 import org.springframework.beans.factory.annotation.Value;

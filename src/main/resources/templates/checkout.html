@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<header th:insert="blocks/header :: header('Shopping cart')"></header>
+<br>
+<br>
+<br>
+
+<div class="container">
+
+    <h1 class="jumbotron">
+        <span sec:authentication="name"></span>'s checkout orders.
+    </h1>
+
+    <div class="alert alert-danger" th:if="${outOfStockMessage}" th:utext="${outOfStockMessage}"></div>
+    <div class="alert alert-info" th:if="${checkout}" th:utext="${checkout}"></div>
+
+</div>
+
+<div th:insert="blocks/footer :: footer"></div>

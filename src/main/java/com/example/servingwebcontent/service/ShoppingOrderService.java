@@ -2,7 +2,6 @@ package com.example.servingwebcontent.service;
 
 import com.example.servingwebcontent.exceptionhandling.NotEnoughProductsInStockException;
 import com.example.servingwebcontent.model.entity.Order;
-import com.example.servingwebcontent.model.entity.OrderDetail;
 import com.example.servingwebcontent.model.entity.Product;
 import com.example.servingwebcontent.model.entity.User;
 
@@ -23,4 +22,5 @@ public interface ShoppingOrderService {
     void checkout() throws NotEnoughProductsInStockException;
 
     BigDecimal getTotal();
+
 }
