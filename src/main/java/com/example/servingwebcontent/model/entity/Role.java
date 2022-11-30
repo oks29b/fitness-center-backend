@@ -5,6 +5,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * @author Oksana Borisenko
+ */
 public enum Role {
     ROLE_USER(Set.of(Permission.DEV_READ)),
     ROLE_ADMIN(Set.of(Permission.DEV_READ, Permission.DEV_WRITE));

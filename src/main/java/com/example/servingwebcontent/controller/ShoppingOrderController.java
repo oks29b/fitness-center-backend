@@ -20,6 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
 
+/**
+ * @author Oksana Borisenko
+ */
 @Controller
 @RequiredArgsConstructor
 public class ShoppingOrderController {

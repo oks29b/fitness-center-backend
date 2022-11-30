@@ -17,12 +17,12 @@ public interface BlogService {
                                       String descriptionWorkout, int durationOfTraining,String filename, User user);
 
 
-    List<Post> blogPostDetails(long id);
+    List<Post> blogPostDetails(Long id);
 
-    List<Post> blogEditInfo(long id);
+    List<Post> blogEditInfo(Long id);
 
-    Post blogPostUpdate(long id, String titleWorkout, String workoutDay,
+    Post blogPostUpdate(Long id, String titleWorkout, String workoutDay,
                                String descriptionWorkout, int durationOfTraining, String filename);
 
-    void blogPostRemove(long id);
+    void blogPostRemove(Long id);
 }

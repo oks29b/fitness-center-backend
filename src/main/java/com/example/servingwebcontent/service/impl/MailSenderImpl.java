@@ -8,6 +8,12 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+/**
+ * MailServiceImpl is implemented MailService.
+ *
+ * @author Oksana Borisenko
+ */
+
 @Service
 public class MailSenderImpl implements MailSender {
     @Value("${spring.mail.username}")
@@ -20,6 +26,13 @@ public class MailSenderImpl implements MailSender {
         this.mailSender = mailSender;
     }
 
+    /**
+     * Send method message
+     *
+     * @param emailTo
+     * @param subject
+     * @param massage
+     */
     public void send(String emailTo, String subject, String massage){
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 

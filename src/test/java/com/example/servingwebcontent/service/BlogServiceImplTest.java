@@ -1,15 +1,15 @@
 package com.example.servingwebcontent.service;
 
 import com.example.servingwebcontent.model.entity.Post;
-import com.example.servingwebcontent.model.entity.User;
 import com.example.servingwebcontent.model.repository.PostRepository;
 import com.example.servingwebcontent.model.repository.UserRepository;
 import com.example.servingwebcontent.service.impl.BlogServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -147,7 +147,6 @@ public class BlogServiceImplTest {
         mockitoBlogService.blogPostRemove(postId);
 
         verify(mockitoBlogService, times(1)).blogPostRemove(postId);
-
-
     }
+
 }

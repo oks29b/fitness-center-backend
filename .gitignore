@@ -25,6 +25,7 @@
 *.iml
 *.ipr
 *.jpg
+*.png
 out/
 !/src/main//out/
 !/src/test//out/

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+/**
+ * @author Oksana Borisenko
+ */
 @Controller
 @RequestMapping("/admin")
 public class AdminController {

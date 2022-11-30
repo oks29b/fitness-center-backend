@@ -5,6 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * @author Oksana Borisenko
+ */
 @Entity
 @Getter
 @Setter

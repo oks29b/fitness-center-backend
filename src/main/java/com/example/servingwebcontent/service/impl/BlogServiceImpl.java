@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * BlogServiceImpl is implemented BlogService.
+ *
+ * @author Oksana Borisenko
+ */
+
 @Service
 public class BlogServiceImpl implements BlogService {
     private final PostRepository postRepository;
@@ -23,11 +29,22 @@ public class BlogServiceImpl implements BlogService {
         return postRepository;
     }
 
+    /**
+     * @return all posts for user
+     *
+     * @param userId
+     */
     @Override
     public List<Post> blogGetMain(Long userId) {
         return postRepository.findAllByUserId(userId);
     }
 
+    /**
+     * @return all posts which name equals filter
+     *
+     * @param filter
+     * @param posts
+     */
     @Override
     public List<Post> blogFilter(String filter, List<Post> posts){
         List<Post> filterPost = new ArrayList<>();
@@ -43,11 +60,24 @@ public class BlogServiceImpl implements BlogService {
         }
     }
 
+    /**
+     * @return all posts
+     */
     @Override
     public List<Post> findAll() {
         return postRepository.findAll();
     }
 
+    /**
+     * @return saved post
+     *
+     * @param titleWorkout
+     * @param workoutDay
+     * @param descriptionWorkout
+     * @param durationOfTraining
+     * @param filename
+     * @param user
+     */
     @Override
     public Post blogPostAdd(String titleWorkout, String workoutDay,
                             String descriptionWorkout, int durationOfTraining,String filename, User user) {
@@ -55,24 +85,43 @@ public class BlogServiceImpl implements BlogService {
         return postRepository.save(post);
     }
 
+    /**
+     * @return details posts by id
+     *
+     * @param id
+     */
     @Override
-    public List<Post> blogPostDetails(long id) {
+    public List<Post> blogPostDetails(Long id) {
         Optional<Post> post = postRepository.findById(id);
         List<Post> res = new ArrayList<>();
         post.ifPresent(res::add);
         return res;
     }
 
+    /**
+     * @return edited posts by id
+     *
+     * @param id
+     */
     @Override
-    public List<Post> blogEditInfo(long id) {
+    public List<Post> blogEditInfo(Long id) {
         Optional<Post> post = postRepository.findById(id);
         List<Post> res = new ArrayList<>();
         post.ifPresent(res::add);
         return res;
     }
 
+    /**
+     * @return updated post
+     *
+     * @param titleWorkout
+     * @param workoutDay
+     * @param descriptionWorkout
+     * @param durationOfTraining
+     * @param fileName
+     */
     @Override
-    public Post blogPostUpdate(long id, String titleWorkout, String workoutDay, String descriptionWorkout, int durationOfTraining, String fileName) {
+    public Post blogPostUpdate(Long id, String titleWorkout, String workoutDay, String descriptionWorkout, int durationOfTraining, String fileName) {
         Post post = postRepository.findById(id).orElseThrow(() -> new NoSuchPostException("There is no post with id = " + id));
         post.setTitleWorkout(titleWorkout);
         post.setWorkoutDay(workoutDay);
@@ -82,8 +131,13 @@ public class BlogServiceImpl implements BlogService {
         return postRepository.save(post);
     }
 
+    /**
+     * remove posts by id
+     *
+     * @param id
+     */
     @Override
-    public void blogPostRemove(long id) {
+    public void blogPostRemove(Long id) {
         Post post = postRepository.findById(id).orElseThrow(() -> new NoSuchPostException("There is no post with id = " + id));
         postRepository.delete(post);
     }
