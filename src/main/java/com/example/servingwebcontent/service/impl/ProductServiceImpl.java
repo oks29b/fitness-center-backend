@@ -12,6 +12,12 @@ import java.math.BigDecimal;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+/**
+ * ProductServiceImpl is implemented ProductService, and as a session bean
+ *
+ * @author Oksana Borisenko
+ */
+
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -27,6 +33,11 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAll(pageable);
     }
 
+    /**
+     * If product is in the database, return false, else - true.
+     *
+     * @param product
+     */
     @Override
     public boolean addProduct(Product product) {
         Product productDb = productRepository.findProductByName(product.getName());
@@ -40,6 +51,14 @@ public class ProductServiceImpl implements ProductService {
         return true;
     }
 
+    /**
+     * Update product.
+     *
+     * @param product
+     * @param description
+     * @param quantity
+     * @param price
+     */
     @Override
     public void updateProduct(Product product, String description, Integer quantity, BigDecimal price) {
         product.setDescription(description);
@@ -48,12 +67,22 @@ public class ProductServiceImpl implements ProductService {
         productRepository.save(product);
     }
 
+    /**
+     * Remove product.
+     *
+     * @param id
+     */
     @Override
     public void removeProduct(Long id) {
         Product product = productRepository.findById(id).orElseThrow(() -> new NoSuchElementException("There is no product with id = " + id));
         productRepository.delete(product);
     }
 
+    /**
+     * Find product by id.
+     *
+     * @param id
+     */
     @Override
     public Optional<Product> findById(Long id) {
         return productRepository.findById(id);

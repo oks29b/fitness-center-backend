@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 /**
- * Shopping Cart is implemented with a Map, and as a session bean
+ * ShoppingOrderServiceImpl is implemented ShoppingOrderService.
  *
  * @author Oksana Borisenko
  */
@@ -68,7 +68,6 @@ public class ShoppingOrderServiceImpl implements ShoppingOrderService {
         Product productDb = productRepository.findProductById(productId);
         addProduct(productDb);
         int quantity = products.getOrDefault(productDb, 0);
-
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setTotalQuantity(quantity);
         orderDetail.setTotalPrice(productDb.getPrice().multiply(BigDecimal.valueOf(quantity)));

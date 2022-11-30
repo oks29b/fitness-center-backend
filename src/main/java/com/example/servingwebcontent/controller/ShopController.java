@@ -14,6 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 
+/**
+ * @author Oksana Borisenko
+ */
 @Controller
 public class ShopController {
 
@@ -29,9 +32,12 @@ public class ShopController {
     @GetMapping("/shop")
     public String shop(@RequestParam("page") Optional<Integer> page, Model model) {
 
-        // Evaluate page. If requested parameter is null or less than 0 (to
-        // prevent exception), return initial size. Otherwise, return value of
-        // param. decreased by 1.
+        /**
+         * Evaluate page. If requested parameter is null or less than 0 (to
+         * prevent exception), return initial size. Otherwise, return value of
+         * param. decreased by 1.
+         */
+
         int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 
         Page<Product> products = productService.findAllProductsPageable(PageRequest.of(evalPage, 5));

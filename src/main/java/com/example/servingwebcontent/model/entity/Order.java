@@ -14,6 +14,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @author Oksana Borisenko
+ */
 @NoArgsConstructor
 @Data
 @ToString(exclude = {"user", "orderDetails" })

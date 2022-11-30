@@ -19,6 +19,9 @@ import javax.validation.Valid;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+ * @author Oksana Borisenko
+ */
 @Controller
 public class RegistrationController {
     private final static String CAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";

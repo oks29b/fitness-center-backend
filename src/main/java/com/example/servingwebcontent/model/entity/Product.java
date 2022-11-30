@@ -9,6 +9,9 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 
+/**
+ * @author Oksana Borisenko
+ */
 @Data
 @NoArgsConstructor
 @Entity
